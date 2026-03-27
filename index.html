@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcWork Soluções</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="animate-gradient min-h-screen text-slate-200 font-sans selection:bg-indigo-500/30">
+
+    <header class="p-6 flex justify-between items-center border-b border-white/10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.5)]">
+                <i class="fas fa-microchip text-white text-xl"></i>
+            </div>
+            <h1 class="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+                CalcWork<span class="text-indigo-400">Soluções</span>
+            </h1>
+        </div>
+        <div id="live-clock" class="hidden md:block text-xs font-mono text-indigo-400"></div>
+    </header>
+
+    <main class="container mx-auto px-6 py-20">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="text-5xl font-extrabold text-white mb-6 leading-tight">Módulos de Inteligência Operacional</h2>
+            <p class="text-slate-400 text-lg">Processamento de dados e automação financeira para recursos humanos de alta performance.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <a href="Ex1/exercicio1.html" class="glass p-8 rounded-3xl hover:bg-white/5 transition-all duration-500 group border-t border-white/20">
+                <div class="text-indigo-400 mb-6 text-3xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-stopwatch"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 tracking-wide">Overtime Engine</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">Cálculo de horas suplementares com algoritmos de distinção de período.</p>
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest group-hover:text-white transition-colors italic">Inicializar Módulo ></span>
+            </a>
+
+            <a href="Ex2/exercicio2.html" class="glass p-8 rounded-3xl hover:bg-white/5 transition-all duration-500 group border-t border-white/20">
+                <div class="text-emerald-400 mb-6 text-3xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 tracking-wide">Growth Matrix</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">Reajuste progressivo de massa salarial baseado em métricas de faturamento.</p>
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest group-hover:text-white transition-colors italic">Inicializar Módulo ></span>
+            </a>
+
+            <a href="Ex3/exercicio3.html" class="glass p-8 rounded-3xl hover:bg-white/5 transition-all duration-500 group border-t border-white/20">
+                <div class="text-amber-400 mb-6 text-3xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 tracking-wide">Logistics Cost</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">Otimização de custos de fretamento e transporte corporativo em escala.</p>
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest group-hover:text-white transition-colors italic">Inicializar Módulo ></span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 w-full p-6 text-center text-slate-600 text-[10px] tracking-[0.3em] uppercase">
+        CalcWork Soluções Systems &copy; <span id="footer-year"></span>
+    </footer>
+
+    <script>
+        // Função para atualizar data e hora em tempo real
+        function startClock() {
+            const clockElement = document.getElementById('live-clock');
+            const footerYear = document.getElementById('footer-year');
+
+            function update() {
+                const now = new Date(); // Cria o objeto Date com data/hora atual do sistema
+                
+                // Formata para o padrão brasileiro: DD/MM/AAAA HH:MM:SS
+                const dateTimeString = now.toLocaleString('pt-BR');
+                
+                clockElement.innerText = `SYS_TIME: ${dateTimeString}`;
+                footerYear.innerText = now.getFullYear(); // Pega apenas o ano para o rodapé
+            }
+
+            setInterval(update, 1000); // Atualiza a cada 1 segundo (1000ms)
+            update(); // Chama uma vez ao carregar para evitar delay
+        }
+
+        startClock();
+    </script>
+</body>
+</html>

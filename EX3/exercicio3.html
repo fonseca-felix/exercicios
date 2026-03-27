@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Logistics Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .neo-input { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(245, 158, 11, 0.2); color: #fff; transition: all 0.3s ease; }
+        .neo-input:focus { border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); outline: none; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="bg-[#0b0f1a] min-h-screen flex items-center justify-center font-sans">
+    <div class="relative w-full max-w-lg p-[1px] rounded-[2rem] bg-gradient-to-b from-amber-500/50 to-transparent text-white">
+        <div class="bg-[#0f172a] rounded-[2rem] p-10 relative overflow-hidden">
+            <a href="../index.html" class="text-slate-500 hover:text-amber-400 text-xs font-bold uppercase tracking-widest transition-colors">
+                 [ESC] Dash_Central
+            </a>
+            <div class="mt-8 mb-10">
+                <h2 class="text-3xl font-black uppercase tracking-tighter">Logistics Cost</h2>
+                <div class="h-1 w-12 bg-amber-500 mt-2"></div>
+            </div>
+            <div class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-500 tracking-widest ml-1 mb-2 block">Funcionários</label>
+                        <input type="number" id="qtd" class="neo-input w-full p-4 rounded-xl font-mono" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-500 tracking-widest ml-1 mb-2 block">Dias Úteis</label>
+                        <input type="number" id="dias" class="neo-input w-full p-4 rounded-xl font-mono" placeholder="0">
+                    </div>
+                </div>
+                <button onclick="computeLogistics()" class="w-full bg-amber-600 hover:bg-amber-500 text-white font-black py-5 rounded-xl transition-all shadow-[0_10px_30px_rgba(245,158,11,0.2)] active:scale-[0.98] uppercase tracking-[0.2em] text-sm">
+                    Processar Logística
+                </button>
+                <div id="terminal" class="hidden mt-8 p-6 rounded-xl bg-black/40 border border-white/5 font-mono text-[11px]">
+                    <p class="text-slate-500 mb-2 uppercase">[ GEN_DATE: <span id="timestamp"></span> ]</p>
+                    <p class="text-amber-400 mb-2">>> ROUTE_COST_CALCULATED</p>
+                    <p class="text-slate-400 uppercase">Investimento Mensal:</p>
+                    <p id="totalOutput" class="text-3xl font-bold mt-2 text-white"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function computeLogistics() {
+            const qtd = parseInt(document.getElementById('qtd').value);
+            const dias = parseInt(document.getElementById('dias').value);
+
+            if (!qtd || !dias) return alert("Preencha todos os campos.");
+
+            let valorPessoaDia = qtd <= 49 ? 4.50 : qtd <= 99 ? 4.10 : qtd <= 149 ? 3.80 : 3.60;
+            const total = qtd * valorPessoaDia * dias;
+
+            document.getElementById('timestamp').innerText = new Date().toLocaleString('pt-BR');
+            document.getElementById('terminal').classList.remove('hidden');
+            document.getElementById('totalOutput').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") window.location.href = "../index.html"; });
+    </script>
+</body>
+</html>
