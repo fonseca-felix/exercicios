@@ -5,7 +5,7 @@
 
 ## 🌐 Deploy na Vercel
 Você pode testar o projeto rodando ao vivo aqui:
-👉 **[INSIRA_SEU_LINK_AQUI.vercel.app]**
+👉 **[CalcWork Soluções](https://exercicios-sepia.vercel.app/)**
 
 ---
 
